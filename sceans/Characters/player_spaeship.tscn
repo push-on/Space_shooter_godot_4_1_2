@@ -10,13 +10,13 @@ height = 84.0
 [node name="Spaeship" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_wa5w0")
+SPEED = 700
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_1s45v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.796875, 0.796875)
 texture = ExtResource("2_x2ym8")
 
 [node name="Lasers" type="Node" parent="."]

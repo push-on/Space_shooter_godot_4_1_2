@@ -8,24 +8,25 @@ script = ExtResource("1_piurn")
 [node name="spawn_position" type="Node2D" parent="."]
 
 [node name="spawn_pos_01" type="Marker2D" parent="spawn_position"]
-position = Vector2(100, -45)
+position = Vector2(217, -68)
 
 [node name="spawn_pos_02" type="Marker2D" parent="spawn_position"]
-position = Vector2(160, -45)
+position = Vector2(343, -68)
 
 [node name="spawn_pos_03" type="Marker2D" parent="spawn_position"]
-position = Vector2(215, -45)
+position = Vector2(471, -67)
 
 [node name="spawn_pos_04" type="Marker2D" parent="spawn_position"]
-position = Vector2(268, -45)
+position = Vector2(603, -67)
 
 [node name="spawn_pos_05" type="Marker2D" parent="spawn_position"]
-position = Vector2(320, -45)
+position = Vector2(724, -67)
 
 [node name="spawn_pos_06" type="Marker2D" parent="spawn_position"]
-position = Vector2(377, -45)
+position = Vector2(845, -66)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b6wpslm2er5sa" path="res://sceans/Characters/eneme_spawner.tscn" id="4_2adww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_27gn3"]
-size = Vector2(737, 80)
+size = Vector2(1129.5, 80)
 
 [sub_resource type="LabelSettings" id="LabelSettings_x5eq5"]
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_vi6eb"]
 font_size = 50
@@ -17,22 +18,23 @@ font_size = 50
 script = ExtResource("1_456u4")
 
 [node name="BG" type="TextureRect" parent="."]
-offset_right = 480.0
+offset_right = 1082.0
 offset_bottom = 720.0
 texture = ExtResource("1_30lhe")
 stretch_mode = 1
 
 [node name="Spaeship" parent="." instance=ExtResource("2_4ea8n")]
-position = Vector2(241, 619)
+position = Vector2(543, 603)
 
 [node name="eneme_spawner" parent="." instance=ExtResource("4_2adww")]
+position = Vector2(0, 20)
 
 [node name="eneme_unload" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="eneme_unload"]
-position = Vector2(229, 863)
+position = Vector2(543.25, 839)
 shape = SubResource("RectangleShape2D_27gn3")
 
 [node name="ui" type="Node" parent="."]
@@ -47,10 +49,10 @@ label_settings = SubResource("LabelSettings_x5eq5")
 
 [node name="game_over" type="Label" parent="ui"]
 visible = false
-offset_left = 86.0
-offset_top = 304.0
-offset_right = 372.0
-offset_bottom = 376.0
+offset_left = 385.0
+offset_top = 293.0
+offset_right = 671.0
+offset_bottom = 365.0
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_vi6eb")
 

@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal took_damage
 
 @onready var Lasers: Node = $Lasers
-const SPEED: int = 300
+@export var SPEED: int = 300
 var LASER: PackedScene = preload("res://sceans/Characters/laser.tscn")
 
 

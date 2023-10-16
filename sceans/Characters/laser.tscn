@@ -16,7 +16,6 @@ script = ExtResource("1_gip1x")
 shape = SubResource("CapsuleShape2D_ptiv3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.307692, 0.307692)
 texture = ExtResource("1_28f7x")
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]

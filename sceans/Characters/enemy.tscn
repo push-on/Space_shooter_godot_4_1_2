@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cki8uc0uddh5s" path="res://assets/enemy/enemy_E.png" id="1_l6khl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3mfn"]
-size = Vector2(74, 76)
+size = Vector2(96, 96)
 
 [node name="enemy" type="Area2D"]
 collision_layer = 2
@@ -15,7 +15,6 @@ script = ExtResource("1_l3vfr")
 shape = SubResource("RectangleShape2D_l3mfn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.78, 0.78)
 texture = ExtResource("1_l6khl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
