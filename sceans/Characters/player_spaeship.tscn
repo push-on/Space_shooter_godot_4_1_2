@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwgawm5ovtnlw"]
+
+[ext_resource type="Script" path="res://scripts/Player_Spaeship.gd" id="1_wa5w0"]
+[ext_resource type="Texture2D" uid="uid://b21gwswtytn3x" path="res://assets/Ship/ship_sidesA.png" id="2_x2ym8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s45v"]
+radius = 33.0
+height = 84.0
+
+[node name="Spaeship" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_wa5w0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_1s45v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.796875, 0.796875)
+texture = ExtResource("2_x2ym8")
+
+[node name="Lasers" type="Node" parent="."]

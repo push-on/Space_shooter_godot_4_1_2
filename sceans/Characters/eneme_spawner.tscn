@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6wpslm2er5sa"]
+
+[ext_resource type="Script" path="res://scripts/eneme_spawner.gd" id="1_piurn"]
+
+[node name="eneme_spawner" type="Node2D"]
+script = ExtResource("1_piurn")
+
+[node name="spawn_position" type="Node2D" parent="."]
+
+[node name="spawn_pos_01" type="Marker2D" parent="spawn_position"]
+position = Vector2(100, -45)
+
+[node name="spawn_pos_02" type="Marker2D" parent="spawn_position"]
+position = Vector2(160, -45)
+
+[node name="spawn_pos_03" type="Marker2D" parent="spawn_position"]
+position = Vector2(215, -45)
+
+[node name="spawn_pos_04" type="Marker2D" parent="spawn_position"]
+position = Vector2(268, -45)
+
+[node name="spawn_pos_05" type="Marker2D" parent="spawn_position"]
+position = Vector2(320, -45)
+
+[node name="spawn_pos_06" type="Marker2D" parent="spawn_position"]
+position = Vector2(377, -45)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

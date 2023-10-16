@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp16lvyfukpsp"]
+
+[ext_resource type="Texture2D" uid="uid://hwtn66m0d2ob" path="res://assets/BG/black.png" id="1_30lhe"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_456u4"]
+[ext_resource type="PackedScene" uid="uid://cwgawm5ovtnlw" path="res://sceans/Characters/player_spaeship.tscn" id="2_4ea8n"]
+[ext_resource type="PackedScene" uid="uid://b6wpslm2er5sa" path="res://sceans/Characters/eneme_spawner.tscn" id="4_2adww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27gn3"]
+size = Vector2(737, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5eq5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vi6eb"]
+font_size = 50
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_456u4")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 480.0
+offset_bottom = 720.0
+texture = ExtResource("1_30lhe")
+stretch_mode = 1
+
+[node name="Spaeship" parent="." instance=ExtResource("2_4ea8n")]
+position = Vector2(241, 619)
+
+[node name="eneme_spawner" parent="." instance=ExtResource("4_2adww")]
+
+[node name="eneme_unload" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eneme_unload"]
+position = Vector2(229, 863)
+shape = SubResource("RectangleShape2D_27gn3")
+
+[node name="ui" type="Node" parent="."]
+
+[node name="player_life" type="Label" parent="ui"]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 73.0
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_x5eq5")
+
+[node name="game_over" type="Label" parent="ui"]
+visible = false
+offset_left = 86.0
+offset_top = 304.0
+offset_right = 372.0
+offset_bottom = 376.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_vi6eb")
+
+[connection signal="took_damage" from="Spaeship" to="." method="_on_spaeship_took_damage"]
+[connection signal="area_entered" from="eneme_unload" to="." method="_on_eneme_unload_area_entered"]
