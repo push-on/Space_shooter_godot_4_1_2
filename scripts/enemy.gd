@@ -1,4 +1,5 @@
 extends Area2D
+signal died
 
 @export var SPEED: int = 200
 
@@ -9,6 +10,7 @@ func _physics_process(delta: float) -> void:
 
 func die() -> void:
 	queue_free()
+	emit_signal("died")
 
 
 func _on_body_entered(body: Node2D) -> void:

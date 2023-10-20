@@ -4,6 +4,7 @@ signal took_damage
 
 @onready var Lasers: Node = $Lasers
 @export var SPEED: int = 300
+@onready var laser_sound = $laser_sound
 var LASER: PackedScene = preload("res://sceans/Characters/laser.tscn")
 
 
@@ -12,6 +13,7 @@ func _process(_delta: float) -> void:
 		shoot()
 
 
+# Player Controles
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2(0, 0)
 
@@ -33,8 +35,10 @@ func shoot() -> void:
 	LASER_INSTANCE.global_position = global_position
 	LASER_INSTANCE.global_position.y -= 50
 	Lasers.add_child(LASER_INSTANCE)
+	laser_sound.play()
 
 
+# Custom Signal
 func take_damage() -> void:
 	emit_signal("took_damage")
 

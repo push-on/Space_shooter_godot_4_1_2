@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d13t8vbu63w8v"]
 
-[ext_resource type="Texture2D" uid="uid://c51mi1sqoru5f" path="res://assets/Lasers/laserBlue16.png" id="1_28f7x"]
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_gip1x"]
+[ext_resource type="Texture2D" uid="uid://klttjd1bdgin" path="res://assets/laserBlue16.png" id="2_x3w2j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptiv3"]
 radius = 2.0
@@ -16,7 +16,7 @@ script = ExtResource("1_gip1x")
 shape = SubResource("CapsuleShape2D_ptiv3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_28f7x")
+texture = ExtResource("2_x3w2j")
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -3.45707e-07)

@@ -14,7 +14,7 @@ config/name="Space_shooter"
 config/tags=PackedStringArray("2d", "game_dev_tv", "shooter", "topdown", "tutorial")
 run/main_scene="res://sceans/Levels/game.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://assets/Ship/ship_sidesA.png"
+config/icon="res://assets/playerShip1_blue.png"
 
 [display]
 
@@ -64,3 +64,9 @@ quit={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="rocket"
 2d_physics/layer_4="death zone"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+environment/glow/upscale_mode=0

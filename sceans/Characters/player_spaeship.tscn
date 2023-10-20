@@ -1,22 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwgawm5ovtnlw"]
+[gd_scene load_steps=13 format=3 uid="uid://cwgawm5ovtnlw"]
 
 [ext_resource type="Script" path="res://scripts/Player_Spaeship.gd" id="1_wa5w0"]
-[ext_resource type="Texture2D" uid="uid://b21gwswtytn3x" path="res://assets/Ship/ship_sidesA.png" id="2_x2ym8"]
+[ext_resource type="Texture2D" uid="uid://dogmomfocisnn" path="res://assets/playerShip1_blue.png" id="2_fd7ng"]
+[ext_resource type="Texture2D" uid="uid://d3yg2dreh03rw" path="res://assets/fire14.png" id="2_fg1ka"]
+[ext_resource type="AudioStream" uid="uid://oumrsrmgxqjx" path="res://assets/sound/sfx_laser2.ogg" id="3_2lrp0"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1s45v"]
-radius = 33.0
-height = 84.0
+[sub_resource type="Gradient" id="Gradient_05x5b"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0.3, 1, 0, 0, 0.75, 1, 1, 0.183333, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v3tet"]
+gradient = SubResource("Gradient_05x5b")
+
+[sub_resource type="Curve" id="Curve_1qgg2"]
+min_value = -1.0
+_data = [Vector2(0.0149254, -0.410526), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.473684), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ib50"]
+curve = SubResource("Curve_1qgg2")
+
+[sub_resource type="Curve" id="Curve_jscqe"]
+_data = [Vector2(0.0597015, 0.242105), 0.0, 0.806015, 0, 1, Vector2(1, 1), 0.806015, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5bcbv"]
+curve = SubResource("Curve_jscqe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hlo81"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_5bcbv")
+color_ramp = SubResource("GradientTexture1D_v3tet")
+hue_variation_curve = SubResource("CurveTexture_6ib50")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwj3e"]
+size = Vector2(99, 76)
 
 [node name="Spaeship" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_wa5w0")
 SPEED = 700
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 43)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_hlo81")
+texture = ExtResource("2_fg1ka")
+lifetime = 0.3
+explosiveness = 0.1
+fixed_fps = 60
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("CapsuleShape2D_1s45v")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_lwj3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x2ym8")
+texture = ExtResource("2_fd7ng")
 
 [node name="Lasers" type="Node" parent="."]
+
+[node name="laser_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2lrp0")

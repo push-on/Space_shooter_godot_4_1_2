@@ -1,33 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp16lvyfukpsp"]
+[gd_scene load_steps=13 format=3 uid="uid://dp16lvyfukpsp"]
 
-[ext_resource type="Texture2D" uid="uid://hwtn66m0d2ob" path="res://assets/BG/black.png" id="1_30lhe"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_456u4"]
 [ext_resource type="PackedScene" uid="uid://cwgawm5ovtnlw" path="res://sceans/Characters/player_spaeship.tscn" id="2_4ea8n"]
+[ext_resource type="Texture2D" uid="uid://cgtmnltdegkts" path="res://assets/black.png" id="3_0cxln"]
+[ext_resource type="Shader" path="res://scripts/Shader/game.gdshader" id="3_2bkqh"]
 [ext_resource type="PackedScene" uid="uid://b6wpslm2er5sa" path="res://sceans/Characters/eneme_spawner.tscn" id="4_2adww"]
+[ext_resource type="PackedScene" uid="uid://csdjjmqsrd7uh" path="res://sceans/UserInterface/hud.tscn" id="5_nyn20"]
+[ext_resource type="AudioStream" uid="uid://bq2eno86co0ki" path="res://assets/sound/explosionCrunch_004.ogg" id="6_xhej8"]
+[ext_resource type="AudioStream" uid="uid://bsu6eki7fhu7x" path="res://assets/sound/lowFrequency_explosion_001.ogg" id="8_5tpnq"]
+[ext_resource type="AudioStream" uid="uid://bf3dwr1ubqwcy" path="res://assets/sound/Space Heroes.ogg" id="9_qc4cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruto2"]
+font_size = 18
+font_color = Color(1, 1, 1, 0.32549)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sgblm"]
+shader = ExtResource("3_2bkqh")
+shader_parameter/direction = Vector2(0, -3)
+shader_parameter/speed_scale = 0.1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_27gn3"]
 size = Vector2(1129.5, 80)
 
-[sub_resource type="LabelSettings" id="LabelSettings_x5eq5"]
-font_size = 40
-
-[sub_resource type="LabelSettings" id="LabelSettings_vi6eb"]
-font_size = 50
-
 [node name="Game" type="Node2D"]
 script = ExtResource("1_456u4")
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("5_nyn20")]
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 784.0
+offset_top = 23.0
+offset_right = 1048.0
+offset_bottom = 164.0
+text = "Controles:
+Move: W, A, S, D or Arrow Keys
+Fire: Space or LMB"
+label_settings = SubResource("LabelSettings_ruto2")
+
 [node name="BG" type="TextureRect" parent="."]
-offset_right = 1082.0
+material = SubResource("ShaderMaterial_sgblm")
+offset_right = 1080.0
 offset_bottom = 720.0
-texture = ExtResource("1_30lhe")
+texture = ExtResource("3_0cxln")
 stretch_mode = 1
 
 [node name="Spaeship" parent="." instance=ExtResource("2_4ea8n")]
 position = Vector2(543, 603)
 
 [node name="eneme_spawner" parent="." instance=ExtResource("4_2adww")]
-position = Vector2(0, 20)
+position = Vector2(1, 20)
 
 [node name="eneme_unload" type="Area2D" parent="."]
 collision_layer = 8
@@ -37,24 +60,19 @@ collision_mask = 2
 position = Vector2(543.25, 839)
 shape = SubResource("RectangleShape2D_27gn3")
 
-[node name="ui" type="Node" parent="."]
+[node name="sounds" type="Node" parent="."]
 
-[node name="player_life" type="Label" parent="ui"]
-offset_left = 16.0
-offset_top = 14.0
-offset_right = 128.0
-offset_bottom = 73.0
-text = "Lives: 3"
-label_settings = SubResource("LabelSettings_x5eq5")
+[node name="enemy_hit_sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("6_xhej8")
 
-[node name="game_over" type="Label" parent="ui"]
-visible = false
-offset_left = 385.0
-offset_top = 293.0
-offset_right = 671.0
-offset_bottom = 365.0
-text = "GAME OVER"
-label_settings = SubResource("LabelSettings_vi6eb")
+[node name="player_take_damage" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("8_5tpnq")
+
+[node name="Menu" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("9_qc4cv")
+volume_db = -10.0
 
 [connection signal="took_damage" from="Spaeship" to="." method="_on_spaeship_took_damage"]
+[connection signal="enemy_spawned" from="eneme_spawner" to="." method="_on_eneme_spawner_enemy_spawned"]
+[connection signal="path_enemy_spawned" from="eneme_spawner" to="." method="_on_eneme_spawner_path_enemy_spawned"]
 [connection signal="area_entered" from="eneme_unload" to="." method="_on_eneme_unload_area_entered"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ushuaddjash"]
+
+[ext_resource type="Script" path="res://scripts/Path_Enemy.gd" id="1_iaqgg"]
+[ext_resource type="PackedScene" uid="uid://c40brlohwt6rn" path="res://sceans/Characters/enemy.tscn" id="1_ilh4n"]
+[ext_resource type="Texture2D" uid="uid://c5j6xwjt0lfq6" path="res://assets/enemyBlack2.png" id="3_qdm5n"]
+
+[sub_resource type="Curve2D" id="Curve2D_oypfy"]
+_data = {
+"points": PackedVector2Array(32.5269, -326.683, -32.5269, 326.683, 663, -123, -4.24264, -224.86, 4.24264, 224.86, 171, 364, -80.6102, -239.002, 80.6102, 239.002, 792, 815)
+}
+point_count = 3
+
+[node name="path_enemy" type="Path2D"]
+position = Vector2(-11, 17)
+curve = SubResource("Curve2D_oypfy")
+script = ExtResource("1_iaqgg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(663, -123)
+rotation = 1.67004
+loop = false
+
+[node name="enemy" parent="PathFollow2D" instance=ExtResource("1_ilh4n")]
+rotation = -1.5708
+SPEED = 0
+
+[node name="Sprite2D" parent="PathFollow2D/enemy" index="1"]
+texture = ExtResource("3_qdm5n")
+
+[editable path="PathFollow2D/enemy"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://csdjjmqsrd7uh"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_qqfmf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idai"]
+bg_color = Color(0.113725, 0.12549, 0.160784, 0.588235)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="SystemFont" id="SystemFont_tlta8"]
+font_names = PackedStringArray("FiraCode Nerd Font Mono")
+font_weight = 700
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6spbs"]
+font = SubResource("SystemFont_tlta8")
+font_size = 30
+
+[sub_resource type="SystemFont" id="SystemFont_hn6xl"]
+font_names = PackedStringArray("FiraCode Nerd Font Mono")
+font_weight = 700
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tq27k"]
+font = SubResource("SystemFont_hn6xl")
+font_size = 30
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qqfmf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 336.0
+offset_bottom = 126.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4idai")
+
+[node name="lives" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 36.0
+offset_right = 273.0
+offset_bottom = 77.0
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_6spbs")
+
+[node name="score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 77.0
+offset_right = 273.0
+offset_bottom = 118.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_tq27k")

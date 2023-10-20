@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bf3dwr1ubqwcy"
+path="res://.godot/imported/Space Heroes.ogg-56f12b0168942323d4d25415ebd9fa0e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sound/Space Heroes.ogg"
+dest_files=["res://.godot/imported/Space Heroes.ogg-56f12b0168942323d4d25415ebd9fa0e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
